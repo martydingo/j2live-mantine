@@ -1,6 +1,6 @@
 import { createTheme, mergeMantineTheme, DEFAULT_THEME, MantineColorsTuple } from '@mantine/core';
 
-export const halcyon_colors: {[key: string]: MantineColorsTuple} = { 
+export const halcyon_colors: { [key: string]: MantineColorsTuple } = {
   dark: [
     "#e3e4e5",
     "#b9bbbf",
@@ -173,5 +173,11 @@ export const halcyon_colors: {[key: string]: MantineColorsTuple} = {
 
 export const theme = createTheme({
   /* Put your mantine theme override here */
-  colors: halcyon_colors
+  colors: halcyon_colors,
+  fontFamily: "Titillium Web, " + DEFAULT_THEME.fontFamily,
+  fontFamilyMonospace: "Maple Mono, " + DEFAULT_THEME.fontFamilyMonospace,
+  headings: {
+    fontFamily: "Bai Jamjuree, " + DEFAULT_THEME.headings.fontFamily
+
+  }
 });

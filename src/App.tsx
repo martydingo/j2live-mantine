@@ -3,6 +3,7 @@ import { AppShell, Code, Divider, Flex, MantineProvider, Text, Textarea, Title, 
 import FileIconsJinja from '~icons/file-icons/jinja';
 import { useState } from "react";
 import { theme } from "./theme";
+import "./theme.css"
 
 async function renderTemplate(yamlVariables: string, jinja2Template: string) {
   try {
@@ -40,7 +41,6 @@ export default function App() {
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = event.currentTarget;
-    const curElement = document.getElementById(name)
     const outputElement = document.getElementById("generatedOutput")
     let generatedOutput
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -50,10 +50,15 @@ export default function App() {
       generatedOutput = renderTemplate(formData.yamlVariables, value)
     }
     Promise.all([generatedOutput]).then((output) => {
-      if (name === "yamlVariables") {
+      if (output[0].error == false) {
         setYamlErrorState(output[0].error as unknown as string)
-      } else {
         setJinja2ErrorState(output[0].error as unknown as string)
+      } else {
+        if (name === "yamlVariables") {
+          setYamlErrorState(output[0].error as unknown as string)
+        } else {
+          setJinja2ErrorState(output[0].error as unknown as string)
+        }
       }
       setFormData((prevState) => ({ ...prevState, generatedOutput: output[0].message as unknown as string }))
       outputElement!.innerText = output[0].message as unknown as string
@@ -78,6 +83,7 @@ export default function App() {
       </AppShell.Header>
       <AppShell.Main>
         <TypographyStylesProvider>
+
           <Flex
             direction="row"
             justify="center"
@@ -91,25 +97,28 @@ export default function App() {
                 name="yamlVariables"
                 id="yamlVariables"
                 description="e.g. some_var: abc"
-                minRows={21}
-                maxRows={21}
+                minRows={18}
+                maxRows={18}
                 autosize
                 onChange={(event) => handleChange(event)}
                 value={formData.yamlVariables}
                 error={yamlErrorState || false}
+                style={{ fontFamily: "var(--mantine-font-family-monospace)" }}
+                size="md"
               />
               <Textarea
                 label="Jinja2 Template"
                 name="jinja2Template"
                 id="jinja2Template"
                 description="e.g. {{ some_var }}"
-                minRows={20}
-                maxRows={20}
+                minRows={18}
+                maxRows={18}
                 autosize
                 onChange={(event) => handleChange(event)}
                 value={formData.jinja2Template}
                 error={jinja2ErrorState}
-                style={{ marginTop: "1em" }}
+                style={{ marginTop: "1em", fontFamily: "var(--mantine-font-family-monospace)" }}
+                size="md"
               />
             </Flex>
             <Flex
