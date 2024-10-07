@@ -19,7 +19,7 @@ async function renderTemplate(yamlVariables: string, jinja2Template: string) {
     const postResponse = await postRequest.json()
     return {
       error: postResponse['error'],
-      message: JSON.parse(JSON.stringify(postResponse['message']))
+      message: postResponse['message']
     }
 
   }
@@ -41,6 +41,7 @@ export default function App() {
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = event.currentTarget;
+    const curElement = document.getElementById(name)
     const outputElement = document.getElementById("generatedOutput")
     let generatedOutput
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -61,7 +62,7 @@ export default function App() {
         }
       }
       setFormData((prevState) => ({ ...prevState, generatedOutput: output[0].message as unknown as string }))
-      outputElement!.innerText = output[0].message as unknown as string
+      outputElement!.innerHTML = output[0].message as unknown as string
     })
   }
 
@@ -82,54 +83,54 @@ export default function App() {
         </Flex>
       </AppShell.Header>
       <AppShell.Main>
-        <TypographyStylesProvider>
+      <TypographyStylesProvider>
 
+        <Flex
+          direction="row"
+          justify="center"
+        >
           <Flex
-            direction="row"
-            justify="center"
+            direction="column"
+            style={{ width: "100%", height: "100%", padding: "1em", maxWidth: "45vw", maxHeight: "45vh" }}
           >
-            <Flex
-              direction="column"
-              style={{ width: "100%", height: "100%", padding: "1em", maxWidth: "45vw", maxHeight: "45vh" }}
-            >
-              <Textarea
-                label="YAML Variables"
-                name="yamlVariables"
-                id="yamlVariables"
-                description="e.g. some_var: abc"
-                minRows={18}
-                maxRows={18}
-                autosize
-                onChange={(event) => handleChange(event)}
-                value={formData.yamlVariables}
-                error={yamlErrorState || false}
-                style={{ fontFamily: "var(--mantine-font-family-monospace)" }}
-                size="md"
-              />
-              <Textarea
-                label="Jinja2 Template"
-                name="jinja2Template"
-                id="jinja2Template"
-                description="e.g. {{ some_var }}"
-                minRows={18}
-                maxRows={18}
-                autosize
-                onChange={(event) => handleChange(event)}
-                value={formData.jinja2Template}
-                error={jinja2ErrorState}
-                style={{ marginTop: "1em", fontFamily: "var(--mantine-font-family-monospace)" }}
-                size="md"
-              />
-            </Flex>
-            <Flex
-              direction="column"
-              style={{ width: "100%", height: "100%", padding: "1em", marginTop: "3.6em", maxWidth: "45vw" }}
-            >
+            <Textarea
+              label="YAML Variables"
+              name="yamlVariables"
+              id="yamlVariables"
+              description="e.g. some_var: abc"
+              minRows={18}
+              maxRows={18}
+              autosize
+              onChange={(event) => handleChange(event)}
+              value={formData.yamlVariables}
+              error={yamlErrorState || false}
+              style={{ fontFamily: "var(--mantine-font-family-monospace)" }}
+              size="md"
+            />
+            <Textarea
+              label="Jinja2 Template"
+              name="jinja2Template"
+              id="jinja2Template"
+              description="e.g. {{ some_var }}"
+              minRows={18}
+              maxRows={18}
+              autosize
+              onChange={(event) => handleChange(event)}
+              value={formData.jinja2Template}
+              error={jinja2ErrorState}
+              style={{ marginTop: "1em", fontFamily: "var(--mantine-font-family-monospace)" }}
+              size="md"
+            />
+          </Flex>
+          <Flex
+            direction="column"
+            style={{ width: "100%", height: "100%", padding: "1em", marginTop: "3.6em", maxWidth: "45vw" }}
+          >
               <Code id="generatedOutput"
                 style={{ textWrap: "pretty", height: "100%" }}
                 block />
-            </Flex>
           </Flex>
+        </Flex>
         </TypographyStylesProvider>
       </AppShell.Main>
     </AppShell>
