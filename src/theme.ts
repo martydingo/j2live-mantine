@@ -8,8 +8,8 @@ export const halcyon_colors: { [key: string]: MantineColorsTuple } = {
     "#5d6069",
     "#3a3e48",
     "#171c28",
+    "#1d2433",
     "#141924",
-    "#11141e",
     "#0d1118",
     "#07090f"
   ],
@@ -174,10 +174,10 @@ export const halcyon_colors: { [key: string]: MantineColorsTuple } = {
 export const theme = createTheme({
   /* Put your mantine theme override here */
   colors: halcyon_colors,
+  primaryColor: "green",
   fontFamily: "Titillium Web, " + DEFAULT_THEME.fontFamily,
   fontFamilyMonospace: "Maple Mono, " + DEFAULT_THEME.fontFamilyMonospace,
   headings: {
     fontFamily: "Bai Jamjuree, " + DEFAULT_THEME.headings.fontFamily
-
-  }
+  },
 });

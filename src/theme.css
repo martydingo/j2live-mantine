@@ -15,7 +15,11 @@
 
 }
 * {
-    textarea {
-        font-size: '5em' !important;
-    }
+    --input-font-family: var(--mantine-font-family-monospace);
+    --input-error-size: var(--mantine-font-size-md) !important;
+    --input-disabled-color: var(--input-color) !important;
+}
+
+.mantine-Textarea-error	{
+    font-family: var(--mantine-font-family-monospace);
 }

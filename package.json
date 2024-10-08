@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.256",
+    "@mantine/colors-generator": "^7.13.2",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
     "@types/react": "^18.3.3",
@@ -24,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
+    "chroma-js": "^3.1.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
