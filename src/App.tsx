@@ -179,8 +179,8 @@ export default function App() {
                   description="The generated output below will automatically update when tweaking values on the left-hand side"
                   style={{ textWrap: "pretty", height: "100%", width: "90%", textAlign: "end" }}
                   minRows={
-                    ((errorState == false || errorState == undefined) && 37) ||
-                    34.5 - (Math.max(errorState.length / 128, 0) - 0.5)
+                    ((errorState == false || errorState == undefined) && 38) ||
+                    34.5 - (Math.max(errorState.length / 90, 0) - 2)
                   }
                   autosize
                   error={errorState || false}
