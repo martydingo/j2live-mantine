@@ -31,19 +31,28 @@ export default function YAMLEditor({
 
   return (
     <>
-    <label className="m_8fdc1311 mantine-InputWrapper-label mantine-Textarea-label" data-size="md" id="YAMLEditor-label" >YAML Variables</label>
-    <p className="YAMLEditor m_fe47ce59 mantine-InputWrapper-description mantine-Textarea-description" data-size="md" id="YAMLEditor-description">{`e.g. some_var: abc`}</p>
-    <Editor
-      height="90vh"
-      id="YAMLEditor"
-      defaultLanguage="yaml"
-      defaultValue="some_var: '123'"
-      value={editorData.YAMLEditor}
-      onMount={handleEditorDidMount}
-      onChange={(editorContent) =>
-        handleEditorChange(editorContent!, "YAMLEditor")
-      }
-      />
-      </>
+      <label
+        className="m_8fdc1311 mantine-InputWrapper-label mantine-Textarea-label"
+        data-size="md"
+        id="YAMLEditor-label"
+      >
+        YAML Variables
+      </label>
+      <p
+        className="YAMLEditor m_fe47ce59 mantine-InputWrapper-description mantine-Textarea-description"
+        data-size="md"
+        id="YAMLEditor-description"
+      >{`e.g. some_var: abc`}</p>
+        <Editor
+          height={window.visualViewport!.height}
+          defaultLanguage="yaml"
+          defaultValue="some_var: '123'"
+          value={editorData.YAMLEditor}
+          onMount={handleEditorDidMount}
+          onChange={(editorContent) =>
+            handleEditorChange(editorContent!, "YAMLEditor")
+          }
+        />
+    </>
   );
 }

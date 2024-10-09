@@ -117,7 +117,7 @@ export default function App() {
                   height: "100%",
                   padding: "1em",
                   maxWidth: "49vw",
-                  maxHeight: "45vh",
+                  maxHeight: "90vh",
                 }}
                 align="start"
               >
