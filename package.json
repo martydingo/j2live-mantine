@@ -18,6 +18,8 @@
   "devDependencies": {
     "@iconify/json": "^2.2.256",
     "@mantine/colors-generator": "^7.13.2",
+    "@monaco-editor/react": "^4.6.0",
+    "@shikijs/monaco": "^1.22.0",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
     "@types/react": "^18.3.3",
@@ -29,9 +31,11 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "monaco-editor": "^0.52.0",
     "postcss": "^8.4.38",
     "postcss-preset-mantine": "1.17.0",
     "postcss-simple-vars": "^7.0.1",
+    "prettier": "^3.3.3",
     "typescript": "^5.5.2",
     "unplugin-icons": "^0.19.3",
     "vite": "^5.3.1"

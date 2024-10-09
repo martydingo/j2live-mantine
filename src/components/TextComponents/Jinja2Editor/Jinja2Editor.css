@@ -1,0 +1,4 @@
+:root {
+    --input-label-size: var(--mantine-font-size-md);
+    --input-description-size: calc(var(--mantine-font-size-md) - calc(0.125rem * var(--mantine-scale)));
+}
