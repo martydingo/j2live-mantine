@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.256",
+    "@mantine/code-highlight": "^7.13.2",
     "@mantine/colors-generator": "^7.13.2",
     "@monaco-editor/react": "^4.6.0",
     "@shikijs/monaco": "^1.22.0",

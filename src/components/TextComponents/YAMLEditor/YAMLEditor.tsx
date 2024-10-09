@@ -26,7 +26,6 @@ export default function YAMLEditor({
 
     editor.updateOptions({
       fontSize: 14,
-      readOnly: true
     });
 
     Promise.all([highlighter]).then(([highlighter]) => {

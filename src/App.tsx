@@ -19,6 +19,7 @@ import "./theme.css";
 import * as monaco from "monaco-editor-core";
 import YAMLEditor from "./components/TextComponents/YAMLEditor/YAMLEditor";
 import JinjaEditor from "./components/TextComponents/JinjaEditor/JinjaEditor";
+import TemplatePreview from "./components/TextComponents/TemplatePreview/TemplatePreview";
 
 async function renderTemplate(
   yamlVariables: string,
@@ -60,7 +61,7 @@ export default function App() {
   const [errorState, setErrorState] = useState("");
 
   const handleEditorChange = (editorContent: string, editorName: string) => {
-    const outputElement = document.getElementById("generatedOutput");
+    const outputElement = document.getElementById("TemplatePreview");
     let generateTemplatePromise;
 
     setEditorData((prevState) => ({ ...prevState, [editorName]: editorContent }));
@@ -165,16 +166,18 @@ export default function App() {
               </Flex>
               <Flex
                 direction="column"
-                justify="end"
-                align="center"
+                justify="center"
+                align="end"
                 style={{
                   width: "100%",
                   height: "100%",
                   padding: "1em",
                   maxWidth: "49vw",
+                  maxHeight: "90vh",
                 }}
               >
-                <Textarea
+                <TemplatePreview />
+                {/* <Textarea
                   id="generatedOutput"
                   inputWrapperOrder={["label", "description", "error", "input"]}
                   label="Generated Template"
@@ -188,7 +191,7 @@ export default function App() {
                   error={errorState || false}
                   size="md"
                   disabled
-                />
+                /> */}
               </Flex>
             </Flex>
           </TypographyStylesProvider>
