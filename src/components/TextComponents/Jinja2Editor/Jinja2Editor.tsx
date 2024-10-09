@@ -5,6 +5,7 @@ import shiki_halcyon from "../../../styles/themes/shiki-halcyon";
 import Editor from "@monaco-editor/react";
 import defineMonacoJinja2Language from "./Jinja2LanguageDefinition";
 import "./Jinja2Editor.css";
+import monaco_theme_halcyon from "../../../styles/themes/monaco/monaco-halcyon";
 
 export default function Jinja2Editor({
   editorData,
@@ -25,11 +26,20 @@ export default function Jinja2Editor({
     const highlighter = createHighlighter({
       themes: [shiki_halcyon],
       langs: ["jinja"],
+      colorReplacements: {
+        '#ffd700': '#5ccfe6'
+      }
     });
 
     Promise.all([highlighter]).then(([highlighter]) => {
       shikiToMonaco(highlighter, monaco);
     });
+
+    monaco_theme_halcyon()
+    monaco.editor.setTheme("Halcyon")
+    editor.updateOptions({
+      fontSize: 14
+    })
   }
 
   return (
@@ -49,8 +59,7 @@ export default function Jinja2Editor({
       <Editor
         height="90vh"
         defaultLanguage="jinja"
-        defaultValue="some_var: '123'"
-        value={editorData.Jinja2Editor}
+        value={editorData.Jinja2Editor}      
         onMount={handleEditorDidMount}
         onChange={(editorContent) =>
           handleEditorChange(editorContent!, "Jinja2Editor")

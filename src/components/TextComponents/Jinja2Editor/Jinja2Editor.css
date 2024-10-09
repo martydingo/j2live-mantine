@@ -1,4 +1,24 @@
 :root {
-    --input-label-size: var(--mantine-font-size-md);
-    --input-description-size: calc(var(--mantine-font-size-md) - calc(0.125rem * var(--mantine-scale)));
+  --input-label-size: var(--mantine-font-size-md);
+  --input-description-size: calc(
+    var(--mantine-font-size-md) - calc(0.125rem * var(--mantine-scale))
+  );
+}
+
+.monaco-editor {
+  span {
+    font-family: "Maple Mono" !important;
+  }
+
+  .bracket-highlighting-0 {
+    color: #ffcc66 !important;
+  }
+
+  .mtk6 {
+    color: #ffae57 !important;
+  }
+
+  .mtk1 {
+    color: #d7dce2;
+  }
 }

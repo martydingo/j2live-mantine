@@ -13,7 +13,7 @@ export default function YAMLEditor({
   handleEditorChange: (editorContent: string, editorName: string) => void;
 }) {
   const editorRef = useRef(null);
-
+  
   function handleEditorDidMount(editor, monaco) {
     // here is the editor instance
     // you can store it in `useRef` for further usage
@@ -23,6 +23,10 @@ export default function YAMLEditor({
       themes: [shiki_halcyon],
       langs: ["yaml"],
     });
+
+    editor.updateOptions({
+      fontSize: 14
+    })
 
     Promise.all([highlighter]).then(([highlighter]) => {
       shikiToMonaco(highlighter, monaco);
@@ -46,7 +50,6 @@ export default function YAMLEditor({
         <Editor
           height={window.visualViewport!.height}
           defaultLanguage="yaml"
-          defaultValue="some_var: '123'"
           value={editorData.YAMLEditor}
           onMount={handleEditorDidMount}
           onChange={(editorContent) =>

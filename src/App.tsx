@@ -54,14 +54,18 @@ export default function App() {
   const [editorData, setEditorData] = useState({
     // yamlVariables: "",
     // jinja2Template: "",
-    YAMLEditor: "x:\n  - name: abc\n  - name: def",
-    Jinja2Editor: "{% for y in x %}\n{{ y }}\n{% endfor %}",
+    YAMLEditor: "",
+    Jinja2Editor: "",
   });
   const [errorState, setErrorState] = useState("");
 
   const handleEditorChange = (editorContent: string, editorName: string) => {
+    console.log(editorName)
+    console.log(editorContent)
     const outputElement = document.getElementById("generatedOutput");
     let generateTemplatePromise;
+
+    setEditorData((prevState) => ({ ...prevState, [editorName]: editorContent }));
 
     if (editorName === "YAMLEditor") {
       generateTemplatePromise = renderTemplate(

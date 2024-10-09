@@ -137,6 +137,14 @@ const MonacoJinja2LanguageDefinition = <ILanguage>{
         ],
         { include: "expression" }
       ],
+
+      /**
+       * Variable Tag Handling
+       */
+      variableState: [
+        [/[-~]?}}/, "delimiter.twig", "@pop"],
+        { include: "expression" }
+      ],
   
       rawDataState: [
         // endverbatim
@@ -153,13 +161,6 @@ const MonacoJinja2LanguageDefinition = <ILanguage>{
         [/./, "string.twig"]
       ],
   
-      /**
-       * Variable Tag Handling
-       */
-      variableState: [
-        [/[-~]?}}/, "delimiter.twig", "@pop"],
-        { include: "expression" }
-      ],
   
       stringState: [
         // closing double quoted string
