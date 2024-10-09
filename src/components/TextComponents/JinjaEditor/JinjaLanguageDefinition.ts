@@ -2,7 +2,7 @@ import * as monaco from "monaco-editor-core";
 import IRichLanguageConfiguration = monaco.languages.LanguageConfiguration;
 import ILanguage = monaco.languages.IMonarchLanguage;
 
-const MonacoJinja2ConfigurationDefinition: IRichLanguageConfiguration = {
+const MonacoJinjaConfigurationDefinition: IRichLanguageConfiguration = {
     wordPattern: /(-?\d*\.\d\w*)|([^`~!@$^&*()=+[{]}\\|;:'",.<>\/\s]+)/g,
   
     comments: {
@@ -40,7 +40,7 @@ const MonacoJinja2ConfigurationDefinition: IRichLanguageConfiguration = {
     ]
   };
   
-const MonacoJinja2LanguageDefinition = <ILanguage>{
+const MonacoJinjaLanguageDefinition = <ILanguage>{
     defaultToken: "",
     tokenPostfix: "",
     ignoreCase: true,
@@ -428,13 +428,13 @@ const MonacoJinja2LanguageDefinition = <ILanguage>{
     }
   };
 
-export default function defineMonacoJinja2Language(monaco) {
+export default function defineMonacoJinjaLanguage(monaco) {
   monaco.languages.register({
     id: "jinja",
     extensions: [".jinja", ".jinja2"],
     aliases: ["Jinja", "jinja", "jinja2"],
-    mimetypes: ["text/jinja", "text/jinja2"],
+    mimetypes: ["text/jinja", "text/Jinja"],
   });
-  monaco.languages.setLanguageConfiguration("jinja", MonacoJinja2ConfigurationDefinition);
-  monaco.languages.setMonarchTokensProvider("jinja", MonacoJinja2LanguageDefinition)
+  monaco.languages.setLanguageConfiguration("jinja", MonacoJinjaConfigurationDefinition);
+  monaco.languages.setMonarchTokensProvider("jinja", MonacoJinjaLanguageDefinition)
 }

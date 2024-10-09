@@ -1,7 +1,7 @@
 import { shikiToMonaco } from "@shikijs/monaco/index.mjs";
 import { useEffect, useRef } from "react";
 import { createHighlighter } from "shiki/index.mjs";
-import shiki_halcyon from "../../styles/themes/shiki-halcyon";
+import shiki_halcyon from "../../../styles/themes/shiki-halcyon";
 
 import Editor from "@monaco-editor/react";
 
@@ -13,7 +13,7 @@ export default function YAMLEditor({
   handleEditorChange: (editorContent: string, editorName: string) => void;
 }) {
   const editorRef = useRef(null);
-  
+
   function handleEditorDidMount(editor, monaco) {
     // here is the editor instance
     // you can store it in `useRef` for further usage
@@ -25,8 +25,9 @@ export default function YAMLEditor({
     });
 
     editor.updateOptions({
-      fontSize: 14
-    })
+      fontSize: 14,
+      readOnly: true
+    });
 
     Promise.all([highlighter]).then(([highlighter]) => {
       shikiToMonaco(highlighter, monaco);
@@ -47,15 +48,15 @@ export default function YAMLEditor({
         data-size="md"
         id="YAMLEditor-description"
       >{`e.g. some_var: abc`}</p>
-        <Editor
-          height={window.visualViewport!.height}
-          defaultLanguage="yaml"
-          value={editorData.YAMLEditor}
-          onMount={handleEditorDidMount}
-          onChange={(editorContent) =>
-            handleEditorChange(editorContent!, "YAMLEditor")
-          }
-        />
+      <Editor
+        height={window.visualViewport!.height}
+        defaultLanguage="yaml"
+        value={editorData.YAMLEditor}
+        onMount={handleEditorDidMount}
+        onChange={(editorContent) =>
+          handleEditorChange(editorContent!, "YAMLEditor")
+        }
+      />
     </>
   );
 }

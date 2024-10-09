@@ -17,12 +17,12 @@ import { theme } from "./theme";
 import "./theme.css";
 
 import * as monaco from "monaco-editor-core";
-import YAMLEditor from "./components/TextComponents/YAMLEditor";
-import Jinja2Editor from "./components/TextComponents/Jinja2Editor/Jinja2Editor";
+import YAMLEditor from "./components/TextComponents/YAMLEditor/YAMLEditor";
+import JinjaEditor from "./components/TextComponents/JinjaEditor/JinjaEditor";
 
 async function renderTemplate(
   yamlVariables: string,
-  jinja2Template: string
+  JinjaTemplate: string
 ): Promise<{ error: boolean; message: string }> {
   try {
     const postRequest = await fetch("http://localhost:8000/", {
@@ -30,7 +30,7 @@ async function renderTemplate(
       method: "POST",
       body: JSON.stringify({
         YAML: yamlVariables,
-        Jinja: jinja2Template,
+        Jinja: JinjaTemplate,
       }),
       mode: "cors",
     });
@@ -53,15 +53,13 @@ async function renderTemplate(
 export default function App() {
   const [editorData, setEditorData] = useState({
     // yamlVariables: "",
-    // jinja2Template: "",
+    // JinjaTemplate: "",
     YAMLEditor: "",
-    Jinja2Editor: "",
+    JinjaEditor: "",
   });
   const [errorState, setErrorState] = useState("");
 
   const handleEditorChange = (editorContent: string, editorName: string) => {
-    console.log(editorName)
-    console.log(editorContent)
     const outputElement = document.getElementById("generatedOutput");
     let generateTemplatePromise;
 
@@ -70,7 +68,7 @@ export default function App() {
     if (editorName === "YAMLEditor") {
       generateTemplatePromise = renderTemplate(
         editorContent,
-        editorData.Jinja2Editor
+        editorData.JinjaEditor
       );
     } else {
       generateTemplatePromise = renderTemplate(
@@ -136,7 +134,7 @@ export default function App() {
                     width: "100%",
                   }}
                 />
-                <Jinja2Editor
+                <JinjaEditor
                   editorData={editorData}
                   handleEditorChange={handleEditorChange}
                 />
@@ -153,14 +151,14 @@ export default function App() {
                 size="md"
               /> */}
                 {/* <Textarea
-                label="Jinja2 Template"
-                name="jinja2Template"
-                id="jinja2Template"
+                label="Jinja Template"
+                name="JinjaTemplate"
+                id="JinjaTemplate"
                 description="e.g. {{ some_var }}"
                 minRows={16}
                 autosize
                 onChange={(event) => handleChange(event)}
-                value={formData.jinja2Template}
+                value={formData.JinjaTemplate}
                 style={{ marginTop: "2.5em", width: "90%" }}
                 size="md"
               /> */}
