@@ -1,4 +1,4 @@
-import { createTheme, mergeMantineTheme, DEFAULT_THEME, MantineColorsTuple } from '@mantine/core';
+import { createTheme, DEFAULT_THEME, MantineColorsTuple } from '@mantine/core';
 
 export const halcyon_colors: { [key: string]: MantineColorsTuple } = {
   dark: [

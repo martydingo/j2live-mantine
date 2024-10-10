@@ -1,6 +1,6 @@
 import { shikiToMonaco } from "@shikijs/monaco/index.mjs";
-import { useEffect, useRef } from "react";
-import { createHighlighter } from "shiki/index.mjs";
+import { useRef } from "react";
+import { createHighlighter, ThemeRegistration } from "shiki/index.mjs";
 import shiki_halcyon from "../../../styles/themes/shiki-halcyon";
 import Editor from "@monaco-editor/react";
 import defineMonacoJinjaLanguage from "./JinjaLanguageDefinition";
@@ -11,12 +11,12 @@ export default function JinjaEditor({
   editorData,
   handleEditorChange,
 }: {
-  editorData: { JinjaEditor: string; JinjaEditor: string };
+  editorData: { JinjaEditor: string };
   handleEditorChange: (editorContent: string, editorName: string) => void;
 }) {
   const editorRef = useRef(null);
  
-  function handleEditorDidMount(editor, monaco) {
+  function handleEditorDidMount(editor: any, monaco: any) {
     // here is the editor instance
     // you can store it in `useRef` for further usage
     editorRef.current = editor;
@@ -24,11 +24,8 @@ export default function JinjaEditor({
     defineMonacoJinjaLanguage(monaco);
 
     const highlighter = createHighlighter({
-      themes: [shiki_halcyon],
+      themes: [shiki_halcyon] as ThemeRegistration[],
       langs: ["jinja"],
-      colorReplacements: {
-        '#ffd700': '#5ccfe6'
-      }
     });
 
     Promise.all([highlighter]).then(([highlighter]) => {

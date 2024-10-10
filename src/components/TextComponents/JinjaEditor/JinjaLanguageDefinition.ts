@@ -428,7 +428,7 @@ const MonacoJinjaLanguageDefinition = <ILanguage>{
     }
   };
 
-export default function defineMonacoJinjaLanguage(monaco) {
+export default function defineMonacoJinjaLanguage(monaco: any) {
   monaco.languages.register({
     id: "jinja",
     extensions: [".jinja", ".jinja2"],

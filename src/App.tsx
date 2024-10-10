@@ -2,31 +2,27 @@ import "@mantine/core/styles.css";
 import {
   AppShell,
   Center,
-  Code,
-  Divider,
   Flex,
   MantineProvider,
-  Text,
   Textarea,
   Title,
   TypographyStylesProvider,
 } from "@mantine/core";
+//@ts-ignore
 import FileIconsJinja from "~icons/file-icons/jinja";
 import { useState } from "react";
 import { theme } from "./theme";
 import "./theme.css";
 
-import * as monaco from "monaco-editor-core";
 import YAMLEditor from "./components/TextComponents/YAMLEditor/YAMLEditor";
 import JinjaEditor from "./components/TextComponents/JinjaEditor/JinjaEditor";
-import TemplatePreview from "./components/TextComponents/TemplatePreview/TemplatePreview";
 
 async function renderTemplate(
   yamlVariables: string,
   JinjaTemplate: string
 ): Promise<{ error: boolean; message: string }> {
   try {
-    const postRequest = await fetch("http://localhost:8000/", {
+    const postRequest = await fetch("/api", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({
@@ -139,30 +135,6 @@ export default function App() {
                   editorData={editorData}
                   handleEditorChange={handleEditorChange}
                 />
-                {/* <Textarea
-                label="YAML Variables"
-                name="yamlVariables"
-                id="yamlVariables"
-                description="e.g. some_var: abc"
-                minRows={16}
-                autosize
-                onChange={(event) => handleChange(event)}
-                value={formData.yamlVariables}
-                style={{ width: "90%" }}
-                size="md"
-              /> */}
-                {/* <Textarea
-                label="Jinja Template"
-                name="JinjaTemplate"
-                id="JinjaTemplate"
-                description="e.g. {{ some_var }}"
-                minRows={16}
-                autosize
-                onChange={(event) => handleChange(event)}
-                value={formData.JinjaTemplate}
-                style={{ marginTop: "2.5em", width: "90%" }}
-                size="md"
-              /> */}
               </Flex>
               <Flex
                 direction="column"
@@ -176,22 +148,22 @@ export default function App() {
                   maxHeight: "90vh",
                 }}
               >
-                <TemplatePreview />
-                {/* <Textarea
-                  id="generatedOutput"
+                {/* <TemplatePreview /> */}
+                <Textarea
+                  id="TemplatePreview"
                   inputWrapperOrder={["label", "description", "error", "input"]}
                   label="Generated Template"
                   description="The generated output below will automatically update when tweaking values on the left-hand side"
                   style={{ textWrap: "pretty", height: "100%", width: "90%", textAlign: "end" }}
                   minRows={
-                    ((errorState == false || errorState == undefined) && 38) ||
+                    ((errorState == "false" || errorState === undefined) && 38) ||
                     34.5 - (Math.max(errorState.length / 90, 0) - 2)
                   }
                   autosize
                   error={errorState || false}
                   size="md"
                   disabled
-                /> */}
+                />
               </Flex>
             </Flex>
           </TypographyStylesProvider>

@@ -1,6 +1,6 @@
 import { shikiToMonaco } from "@shikijs/monaco/index.mjs";
-import { useEffect, useRef } from "react";
-import { createHighlighter } from "shiki/index.mjs";
+import { useRef } from "react";
+import { createHighlighter, ThemeRegistration } from "shiki/index.mjs";
 import shiki_halcyon from "../../../styles/themes/shiki-halcyon";
 
 import Editor from "@monaco-editor/react";
@@ -9,18 +9,18 @@ export default function YAMLEditor({
   editorData,
   handleEditorChange,
 }: {
-  editorData: { YAMLEditor: string; YAMLEditor: string };
+  editorData: { YAMLEditor: string; };
   handleEditorChange: (editorContent: string, editorName: string) => void;
 }) {
   const editorRef = useRef(null);
 
-  function handleEditorDidMount(editor, monaco) {
+  function handleEditorDidMount(editor: any, monaco: any) {
     // here is the editor instance
     // you can store it in `useRef` for further usage
     editorRef.current = editor;
     monaco.languages.register({ id: "yaml" });
     const highlighter = createHighlighter({
-      themes: [shiki_halcyon],
+      themes: [shiki_halcyon] as ThemeRegistration[],
       langs: ["yaml"],
     });
 
